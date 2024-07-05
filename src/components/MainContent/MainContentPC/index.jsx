@@ -86,8 +86,8 @@ const GridSection = styled(Section)`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 20px !important;
+  margin-top: 20px !important;
   opacity: ${(props) => (props.inView ? 1 : 0)};
   transform: ${(props) =>
     props.inView ? 'translateY(0)' : 'translateY(50px)'};
@@ -162,7 +162,10 @@ const MainContentPC = () => {
       <GridSection
         ref={ref3}
         inView={inView3}
-        style={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr' }}
+        style={{
+          gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
+          paddingTop: '20px',
+        }}
         id="comp-ly3x945g4"
         bgColor={'#3A4461'}
       >
@@ -173,7 +176,7 @@ const MainContentPC = () => {
           >
             <span
               className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%' }}
+              style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
             >
               <span className="color_11 wixui-rich-text__text">ABOUT</span>
             </span>
@@ -181,31 +184,38 @@ const MainContentPC = () => {
           <br className="wixui-rich-text__text" />
           <br className="wixui-rich-text__text" />
 
-          <AnimatedText color="#ffffff" fontSize="20px" align="center">
-            <br className="wixui-rich-text__text" />
-
-            <span
-              className="wixui-rich-text__text"
-              style={{ fontSize: '16px', width: '100%', textAlign: 'center' }}
+          <div style={{ width: '100%', alignItems: 'center' }}>
+            <AnimatedText
+              color="#ffffff"
+              fontSize="20px"
+              align="center"
+              style={{ textAlign: 'center' }}
             >
-              <span className="color_11 wixui-rich-text__text">
-                세풍P.L은 2002년에 설립된 이래, 2016년 (주) 세풍피엘로 법인
-                전환을 완료하며, 흙막이 시스템(SLODE PANNEL SYSTEM) 제작의
-                선두주자로 자리매김하였습니다.
-                <br className="wixui-rich-text__text" />
-                오랜 기간 동안 축적된 노하우를 바탕으로 최상의 품질을 자랑하는
-                제품을 생산하고 있습니다.
-              </span>
-              <br className="wixui-rich-text__text" />
               <br className="wixui-rich-text__text" />
 
-              <span className="color_11 wixui-rich-text__text">
-                고객 여러분의 지속적인 지도와 조언에 감사드리며, 신뢰와 소신을
-                바탕으로 사회에 기여하는 (주) 세풍피엘이 되기 위해 최선을
-                다하겠습니다.
+              <span
+                className="wixui-rich-text__text"
+                style={{ fontSize: '16px', width: '100%', textAlign: 'center' }}
+              >
+                <span className="color_11 wixui-rich-text__text">
+                  세풍P.L은 2002년에 설립된 이래, 2016년 (주) 세풍피엘로 법인
+                  전환을 완료하며, 흙막이 시스템(SLODE PANNEL SYSTEM) 제작의
+                  선두주자로 자리매김하였습니다.
+                  <br className="wixui-rich-text__text" />
+                  오랜 기간 동안 축적된 노하우를 바탕으로 최상의 품질을 자랑하는
+                  제품을 생산하고 있습니다.
+                </span>
+                <br className="wixui-rich-text__text" />
+                <br className="wixui-rich-text__text" />
+
+                <span className="color_11 wixui-rich-text__text">
+                  고객 여러분의 지속적인 지도와 조언에 감사드리며, 신뢰와 소신을
+                  바탕으로 사회에 기여하는 (주) 세풍피엘이 되기 위해 최선을
+                  다하겠습니다.
+                </span>
               </span>
-            </span>
-          </AnimatedText>
+            </AnimatedText>
+          </div>
           <RightAlignedText>
             <h2
               className="font_2 wixui-rich-text__text"
@@ -215,7 +225,11 @@ const MainContentPC = () => {
                 className="wixui-rich-text__text"
                 style={{ fontSize: '25px', width: '100%' }}
               >
-                <AnimatedText color="#ffffff" fontSize="20px">
+                <AnimatedText
+                  color="#ffffff"
+                  fontSize="20px"
+                  style={{ textAlign: 'center' }}
+                >
                   (주) 세풍피엘 대표이사 임 상 덕
                 </AnimatedText>
               </span>
