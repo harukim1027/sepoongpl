@@ -9,6 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import MainContentPC from './components/MainContent/MainContentPC'
 import MainContentMobile from './components/MainContent/MainContentMobile'
 import Footer from './components/Footer'
+import ProductDetail from './pages/ProductDetail'
 
 const GlobalStyle = createGlobalStyle`
   a,abbr,acronym,address,applet,b,big,blockquote,button,caption,center,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,font,footer,form,h1,h2,h3,h4,h5,h6,header,i,iframe,img,ins,kbd,label,legend,li,nav,object,ol,p,pre,q,s,samp,section,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,title,tr,tt,u,ul,var {
@@ -282,13 +283,16 @@ const App = () => {
     <>
       <GlobalStyle />
       <Router>
-        <Header />
+        <Header bgColor={'#fffef8'} />
         <AppContainer>
-          {isMobile ? <MainContentMobile /> : <MainContentPC />}
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={isMobile ? <MainContentMobile /> : <MainContentPC />}
+            />
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </AppContainer>
         <Footer />
