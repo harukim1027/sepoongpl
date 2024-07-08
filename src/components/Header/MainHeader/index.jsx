@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 import DropdownMenu from '../DropdownMenu'
 
 const HeaderContainer = styled.header`
@@ -8,7 +9,8 @@ const HeaderContainer = styled.header`
   left: 0;
   width: 100%;
   z-index: 1000; /* 다른 요소 위에 표시 */
-  background-color: transparent; /* 배경색 제거 */
+  background-image: ${({ bgImage }) => (bgImage ? `url(${bgImage})` : 'none')};
+  background-size: cover;
   padding: 10px 0;
   display: flex;
   justify-content: center;
@@ -37,6 +39,7 @@ const HeaderContent = styled.div`
 const Title = styled.h1`
   margin: 0;
   font-size: 2rem;
+  color: ${({ isDark }) => (isDark ? 'white' : 'black')};
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -44,13 +47,42 @@ const Title = styled.h1`
 `
 
 const Header = () => {
+  const [isDark, setIsDark] = useState(false)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // 예: 스크롤에 따라 배경색 변경
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      if (scrollY > 50) {
+        setIsDark(true)
+      } else {
+        setIsDark(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  const handleLogoClick = () => {
+    navigate('/')
+  }
+
   return (
-    <HeaderContainer>
+    <HeaderContainer bgColor={isDark ? 'black' : 'transparent'}>
       <HeaderContent>
         <img
           src={require('../../../assets/images/mainLogo.png')}
           width={'200px'}
+          alt="Logo"
+          onClick={handleLogoClick}
+          style={{ cursor: 'pointer' }}
         />
+        {/* <Title isDark={isDark}>세풍피엘</Title> */}
         <DropdownMenu />
       </HeaderContent>
     </HeaderContainer>
