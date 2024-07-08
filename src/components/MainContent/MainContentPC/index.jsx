@@ -20,6 +20,7 @@ import OrgChart from '../../OrgChart'
 import Products from '../../Products'
 import KakaoMap from '../../KakaoMap'
 import BackgroundImage from '../../BackgroundImage'
+import ProductImages from '../../ProductImages'
 
 const MainContentContainer = styled.div`
   display: flex;
@@ -156,6 +157,43 @@ const MainContentPC = () => {
           </SlideImageContainer>
         </BackgroundContainer>
       </GridSection>
+      <GridSection
+        ref={ref6}
+        inView={inView6}
+        style={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr' }}
+        id="comp-ly3x945m1"
+        bgColor={'#FFFEF8'}
+      >
+        <BackgroundContainer>
+          <br className="wixui-rich-text__text" />
+
+          <h2
+            className="font_2 wixui-rich-text__text"
+            style={{ width: '100%', textAlign: 'center' }}
+          >
+            <span
+              className="wixui-rich-text__text"
+              style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Red Hat Display', sans-serif",
+                  fontWeight: 'bold',
+                  fontSize: '70px',
+                  color: '#222',
+                  textAlign: 'center',
+                }}
+              >
+                PRODUCTS
+              </span>
+            </span>
+          </h2>
+          <br className="wixui-rich-text__text" />
+          <br className="wixui-rich-text__text" />
+
+          <ProductImages />
+        </BackgroundContainer>
+      </GridSection>
       <GridSection ref={ref2} inView={inView2}>
         <IconList />
       </GridSection>
@@ -273,7 +311,7 @@ const MainContentPC = () => {
           <History />
         </BackgroundContainer>
       </GridSection>
-      <StyledHR /> {/* 구분선 추가 */}
+      <StyledHR />
       <GridSection
         ref={ref5}
         inView={inView5}
@@ -299,7 +337,7 @@ const MainContentPC = () => {
         </BackgroundContainer>
       </GridSection>
       <StyledHR /> {/* 구분선 추가 */}
-      <GridSection
+      {/* <GridSection
         ref={ref6}
         inView={inView6}
         style={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr' }}
@@ -335,8 +373,7 @@ const MainContentPC = () => {
 
           <Products />
         </BackgroundContainer>
-      </GridSection>
-      <StyledHR /> {/* 구분선 추가 */}
+      </GridSection> */}
       <GridSection
         ref={ref7}
         inView={inView7}
