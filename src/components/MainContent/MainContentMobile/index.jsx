@@ -256,6 +256,19 @@ const MainContentMobile = () => {
           >
             LOCATION
           </h2>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: '16px',
+              color: '#222',
+              fontWeight: '500',
+
+              marginTop: '30px',
+              marginBottom: '10px',
+            }}
+          >
+            경기도 안산시 단원구 번영2로 안길41 (시화공단 4다 101-3)
+          </h2>
           <KakaoMap />
         </BackgroundContainer>
       </SectionContainer>
