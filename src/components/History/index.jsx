@@ -12,11 +12,12 @@ const fadeIn = keyframes`
 `
 
 const Container = styled.div`
-  padding: 20px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  margin: 0 auto; /* 화면 중앙 정렬 */
 `
 
 const Timeline = styled.div`
@@ -34,6 +35,13 @@ const HistoryItemContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-in-out forwards;
   opacity: 0;
   animation-delay: ${({ delay }) => delay}s;
+  flex-direction: ${({ position }) =>
+    position === 'left' ? 'row-reverse' : 'row'};
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* 모바일에서는 세로 배치 */
+    margin: 10px 0;
+  }
 `
 
 const YearTextContainer = styled.div`
@@ -45,16 +53,45 @@ const YearTextContainer = styled.div`
   position: absolute;
   ${({ position }) => (position === 'left' ? 'left: 0;' : 'right: 0;')}
   width: 45%;
+
+  @media (max-width: 768px) {
+    position: static; /* 모바일에서는 절대 위치 제거 */
+    width: 100%;
+    text-align: center; /* 모바일에서는 중앙 정렬 */
+    align-items: center;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 12px; /* 작은 화면에서 폰트 크기 줄임 */
+  }
 `
 
 const Year = styled.div`
   font-size: 24px;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 16px; /* 더 작은 화면에서 폰트 크기 줄임 */
+  }
 `
 
 const Text = styled.div`
   font-size: 16px;
   margin-top: 30px;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 12px; /* 작은 화면에서 폰트 크기 줄임 */
+  }
 `
 
 const Circle = styled.div`
@@ -62,20 +99,24 @@ const Circle = styled.div`
   height: 31px;
   margin-top: 20px;
   margin-bottom: 20px;
-
   background: url(${lightImg}) no-repeat center center;
   background-size: contain;
   position: relative;
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+    order: -1; /* 모바일에서는 Circle을 텍스트 위로 이동 */
+  }
 `
 
 const HistoryItem = ({ year, text, delay, position, index }) => {
   return (
     <HistoryItemContainer delay={delay} position={position}>
+      <Circle index={index} />
       <YearTextContainer position={position}>
         <Year>{year}</Year>
         <Text>{text}</Text>
       </YearTextContainer>
-      <Circle index={index} />
     </HistoryItemContainer>
   )
 }

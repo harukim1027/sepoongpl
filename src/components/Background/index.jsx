@@ -5,7 +5,6 @@ import '../../styles/styles.css'
 const BackgroundContainer = styled.div`
   position: relative;
   background-color: var(--wst-color-fill-background-primary);
-  padding: 20px;
   box-sizing: border-box;
 
   #comp-ly3x945u {

@@ -1220,7 +1220,6 @@ a {
 #comp-ly3x945m1 {
   --bg-overlay-color: rgb(var(--color_12));
   --bg-gradient: none;
-  min-width: 980px;
 }
 #comp-ly3x945n {
   --bg-overlay-color: transparent;
@@ -2258,7 +2257,7 @@ body:not([data-js-loaded]) [data-hide-prejs] {
 
 @media (max-width: 480px) {
   :root {
-    --image-width: 100vw;
+    --image-width: 100%;
     --image-height: auto;
   }
 
@@ -2281,7 +2280,7 @@ body:not([data-js-loaded]) [data-hide-prejs] {
 
 @media (max-width: 320px) {
   :root {
-    --image-width: 100vw;
+    --image-width: 100%;
     --image-height: auto;
   }
 
@@ -2605,11 +2604,7 @@ body.disable-site-overflow #POPUPS_ROOT {
   min-width: 980px;
   --items-direction: row;
 }
-#comp-ly3x945m1 {
-  --bg-overlay-color: rgb(var(--color_12));
-  --bg-gradient: none;
-  min-width: 980px;
-}
+
 #comp-ly3x945n {
   --bg-overlay-color: transparent;
   --bg-gradient: none;

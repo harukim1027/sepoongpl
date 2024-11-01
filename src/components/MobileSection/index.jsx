@@ -6,7 +6,7 @@ const SectionContainer = styled.section`
   display: flex;
   padding: 20px;
   background-color: ${({ bgColor }) => bgColor || '#001350'};
-  width: 100vw;
+  width: 100%;
 `
 
 const MobileSection = ({ id, children, bgColor }) => {

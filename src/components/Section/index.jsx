@@ -5,11 +5,11 @@ const SectionContainer = styled.section`
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 20px;
+  justify-content: center;
   background-color: ${({ bgColor }) => bgColor || '#FFFEF8'};
   width: 100%;
-
+  padding-top: 60px;
+  padding-bottom: 60px;
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 10px;

@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer'
 import Section from '../../Section'
 import Image from '../../Image'
 import AnimatedText from '../../Animated/AnimatedText'
-import Button from '../../Button'
 import '../../../styles/styles.css'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import image1 from '../../../assets/images/3dImage1.png'
@@ -14,18 +13,16 @@ import image4 from '../../../assets/images/3dImage4.png'
 import background from '../../../assets/images/background2.jpg'
 
 import ImageSlider from '../../ImageSlider'
-import IconList from '../../IconList'
 import History from '../../History'
 import OrgChart from '../../OrgChart'
-import Products from '../../Products'
 import KakaoMap from '../../KakaoMap'
-import BackgroundImage from '../../BackgroundImage'
 import ProductImages from '../../ProductImages'
 
 const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fffef8;
+  overflow: hidden; /* 스크롤바 숨김 */
 `
 
 const MainTextContainer = styled.div`
@@ -45,34 +42,22 @@ const StyledSpan = styled.span`
 
 const MainSection = styled.section`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 `
 
-const ImageContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`
-
-const StyledImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.5;
-  transform: rotate(270deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-`
-const StyledImage2 = styled(BackgroundImage)``
-
 const BackgroundContainer = styled.div`
   width: 100%;
-  padding: 20px;
+`
+
+const BackgroundContainerProducts = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
 `
 
 const SlideImageContainer = styled.div`
@@ -87,7 +72,6 @@ const GridSection = styled(Section)`
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
-  padding: 20px !important;
   margin-top: 20px !important;
   opacity: ${(props) => (props.inView ? 1 : 0)};
   transform: ${(props) =>
@@ -108,7 +92,7 @@ const StyledHR = styled.hr`
   height: 1px;
   width: 40%;
   background: #3a4461;
-  margin: 30px auto; /* 상하 간격 조정 및 가운데 정렬 */
+  margin: 30px auto;
 `
 const MainContentPC = () => {
   const images = [image1, image2, image3, image4]
@@ -153,18 +137,13 @@ const MainContentPC = () => {
         <BackgroundContainer>
           <SlideImageContainer>
             <ImageSlider images={images} interval={3000} />
-            <Button style={{ width: '100%' }}>더 알아보기</Button>
           </SlideImageContainer>
         </BackgroundContainer>
       </GridSection>
-      <GridSection
-        ref={ref6}
-        inView={inView6}
-        style={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr' }}
-        id="comp-ly3x945m1"
-        bgColor={'#FFFEF8'}
-      >
-        <BackgroundContainer>
+      <StyledHR />
+
+      <GridSection ref={ref6} inView={inView6} bgColor={'#FFFEF8'}>
+        <BackgroundContainerProducts>
           <br className="wixui-rich-text__text" />
 
           <h2
@@ -192,10 +171,7 @@ const MainContentPC = () => {
           <br className="wixui-rich-text__text" />
 
           <ProductImages />
-        </BackgroundContainer>
-      </GridSection>
-      <GridSection ref={ref2} inView={inView2}>
-        <IconList />
+        </BackgroundContainerProducts>
       </GridSection>
       <GridSection
         ref={ref3}
@@ -222,7 +198,7 @@ const MainContentPC = () => {
           <br className="wixui-rich-text__text" />
           <br className="wixui-rich-text__text" />
 
-          <div style={{ width: '100%', alignItems: 'center' }}>
+          <div style={{ width: '90%', alignItems: 'center', padding: 30 }}>
             <AnimatedText
               color="#ffffff"
               fontSize="20px"
@@ -233,7 +209,7 @@ const MainContentPC = () => {
 
               <span
                 className="wixui-rich-text__text"
-                style={{ fontSize: '16px', width: '100%', textAlign: 'center' }}
+                style={{ fontSize: '18px', width: '100%', textAlign: 'center' }}
               >
                 <span className="color_11 wixui-rich-text__text">
                   세풍P.L은 2002년에 설립된 이래, 2016년 (주) 세풍피엘로 법인
@@ -336,82 +312,61 @@ const MainContentPC = () => {
           <OrgChart />
         </BackgroundContainer>
       </GridSection>
-      <StyledHR /> {/* 구분선 추가 */}
-      {/* <GridSection
-        ref={ref6}
-        inView={inView6}
-        style={{ gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr' }}
-        id="comp-ly3x945m1"
-        bgColor={'#FFFEF8'}
-      >
-        <BackgroundContainer>
-          <br className="wixui-rich-text__text" />
+      <StyledHR />
 
-          <h2
-            className="font_2 wixui-rich-text__text"
-            style={{ width: '100%', textAlign: 'center' }}
-          >
-            <span
-              className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
-            >
-              <span
-                style={{
-                  fontFamily: "'Red Hat Display', sans-serif",
-                  fontWeight: 'bold',
-                  fontSize: '70px',
-                  color: '#222',
-                  textAlign: 'center',
-                }}
-              >
-                PRODUCTS
-              </span>
-            </span>
-          </h2>
-          <br className="wixui-rich-text__text" />
-          <br className="wixui-rich-text__text" />
-
-          <Products />
-        </BackgroundContainer>
-      </GridSection> */}
       <GridSection
         ref={ref7}
         inView={inView7}
         style={{
           gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
           justifyContent: 'center',
+          display: 'flex',
+          alignItems: 'center',
         }}
         id="comp-ly3x945m1"
         bgColor={'#FFFEF8'}
       >
-        <BackgroundContainer>
-          <br className="wixui-rich-text__text" />
-
-          <h2
-            className="font_2 wixui-rich-text__text"
-            style={{ width: '100%', textAlign: 'center' }}
+        <BackgroundContainer
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              textAlign: 'center',
+              width: '100%',
+              padding: 20,
+              justifyContent: 'center',
+              flexDirection: 'column',
+              display: 'flex',
+              alignItems: 'center',
+            }}
           >
-            <span
-              className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
+            <h2
+              className="font_2 wixui-rich-text__text"
+              style={{ width: '100%', textAlign: 'center' }}
             >
               <span
-                style={{
-                  fontFamily: "'Red Hat Display', sans-serif",
-                  fontWeight: 'bold',
-                  fontSize: '70px',
-                  color: '#222',
-                  textAlign: 'center',
-                }}
+                className="wixui-rich-text__text"
+                style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
               >
-                LOCATION
+                <span
+                  style={{
+                    fontFamily: "'Red Hat Display', sans-serif",
+                    fontWeight: 'bold',
+                    fontSize: '70px',
+                    color: '#222',
+                    textAlign: 'center',
+                  }}
+                >
+                  LOCATION
+                </span>
               </span>
-            </span>
-          </h2>
-          <br className="wixui-rich-text__text" />
-          <br className="wixui-rich-text__text" />
-
-          <KakaoMap />
+            </h2>
+            <KakaoMap />
+          </div>
         </BackgroundContainer>
       </GridSection>
     </MainContentContainer>

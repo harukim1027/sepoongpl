@@ -2,73 +2,73 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 const MapContainer = styled.div`
-  width: 80%;
-  height: auto;
-  position: relative;
-  padding-bottom: 50%; /* Aspect Ratio 2:1 (for example, adjust as needed) */
-  margin: 0 auto; /* 가로로 가운데 정렬 */
+  width: 98%; /* 화면의 전체 너비를 사용 */
+  height: 350px;
+  margin-top: 40px;
 
   @media (max-width: 768px) {
-    width: 100%;
-    padding-bottom: 75%; /* Aspect Ratio 4:3 for smaller screens */
+    height: 300px; /* 모바일에서는 높이를 조금 줄임 */
+  }
+
+  @media (max-width: 480px) {
+    height: 250px; /* 더 작은 화면에서는 높이를 더 줄임 */
+  }
+
+  @media (max-width: 430px) {
+    width: 100%; /* 430px 이하에서는 화면 너비를 가득 채움 */
   }
 `
 
-const MapWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`
-
 const KakaoMap = () => {
+  const apiKey = '3ef92bacedb1f63ae7aa69feaea576b1'
+
   useEffect(() => {
-    const apiKey = process.env.REACT_APP_KAKAO_MAP_API_KEY
-
-    if (!apiKey) {
-      console.error('Kakao Map API Key is missing')
-      return
-    }
-
-    const script = document.createElement('script')
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
-    script.async = true
-    document.head.appendChild(script)
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById('map')
-        const options = {
-          center: new window.kakao.maps.LatLng(37.328055, 126.739345), // 회사의 위도와 경도
-          level: 3, // 지도의 확대 레벨
+    const loadKakaoMap = () => {
+      if (window.kakao && window.kakao.maps) {
+        const mapContainer = document.getElementById('map')
+        const mapOption = {
+          center: new window.kakao.maps.LatLng(37.316462, 126.73878), // 지도 중심 좌표
+          level: 3, // 지도 확대 레벨 (1로 하면 너무 확대됨)
         }
-        const map = new window.kakao.maps.Map(container, options)
 
-        // 마커 추가
+        // 지도 생성
+        const map = new window.kakao.maps.Map(mapContainer, mapOption)
+
+        // 마커가 표시될 위치 (해당 좌표에 핀을 찍음)
         const markerPosition = new window.kakao.maps.LatLng(
-          37.328055,
-          126.739345
+          37.316462,
+          126.73878
         )
+
+        // 마커 생성
         const marker = new window.kakao.maps.Marker({
           position: markerPosition,
         })
-        marker.setMap(map)
-      })
-    }
 
-    return () => {
-      if (script) {
-        document.head.removeChild(script)
+        // 마커를 지도에 표시
+        marker.setMap(map)
+      } else {
+        console.error('Kakao Maps API가 로드되지 않았습니다.')
       }
     }
-  }, [])
 
-  return (
-    <MapContainer>
-      <MapWrapper id="map" />
-    </MapContainer>
-  )
+    // Kakao Maps API 로드
+    const kakaoScript = document.createElement('script')
+    kakaoScript.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
+    kakaoScript.async = true
+    kakaoScript.onload = () => {
+      if (window.kakao && window.kakao.maps) {
+        window.kakao.maps.load(loadKakaoMap) // API 로드 후 지도를 초기화
+      }
+    }
+    document.head.appendChild(kakaoScript)
+
+    return () => {
+      document.head.removeChild(kakaoScript)
+    }
+  }, [apiKey])
+
+  return <MapContainer id="map" />
 }
 
 export default KakaoMap

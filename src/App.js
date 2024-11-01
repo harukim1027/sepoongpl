@@ -1,5 +1,10 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom'
 import Header from './components/Header/MainHeader'
 import Home from './pages/Home'
 import Projects from './pages/Project'
@@ -10,6 +15,7 @@ import MainContentPC from './components/MainContent/MainContentPC'
 import MainContentMobile from './components/MainContent/MainContentMobile'
 import Footer from './components/Footer'
 import ProductDetail from './pages/ProductDetail'
+import ProductDetailMobile from './pages/ProductDetailMobile'
 
 const GlobalStyle = createGlobalStyle`
   a,abbr,acronym,address,applet,b,big,blockquote,button,caption,center,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,font,footer,form,h1,h2,h3,h4,h5,h6,header,i,iframe,img,ins,kbd,label,legend,li,nav,object,ol,p,pre,q,s,samp,section,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,title,tr,tt,u,ul,var {
@@ -274,15 +280,63 @@ const GlobalStyle = createGlobalStyle`
 
 const AppContainer = styled.div`
   background-color: #fffef8;
+  margin: 0 auto;
+  width: 100%;
+
+  /* 적절한 화면 크기에서만 패딩 조정 */
+  @media (min-width: 1200px) {
+    padding: 0;
+  }
+
+  /* 768px 이하 화면에서 폰트 크기 조정 */
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  /* 576px 이하 화면에서 폰트 크기 조정 */
+  @media (max-width: 576px) {
+    font-size: 0.85rem;
+  }
+
+  /* 400px 이하 화면에서 폰트 크기 조정 */
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
 `
 
+// 스크롤을 맨 위로 이동시키는 컴포넌트
+const ScrollToTop = () => {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0) // 페이지가 이동할 때 스크롤을 맨 위로 이동
+  }, [pathname])
+
+  return null
+}
 const App = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
+  // useEffect(() => {
+  //   // 환경 변수에서 Kakao API 키를 가져오기
+  //   const kakaoMapApiKey = process.env.REACT_APP_KAKAO_MAP_API_KEY
+
+  //   // Kakao Map API 스크립트 동적 로드
+  //   const script = document.createElement('script')
+  //   script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMapApiKey}`
+  //   script.async = true
+  //   document.head.appendChild(script)
+
+  //   // 정리 함수
+  //   return () => {
+  //     document.head.removeChild(script)
+  //   }
+  // }, [])
 
   return (
     <>
       <GlobalStyle />
       <Router>
+        <ScrollToTop />
         <Header bgColor={'#fffef8'} />
         <AppContainer>
           <Routes>
@@ -290,9 +344,11 @@ const App = () => {
               path="/"
               element={isMobile ? <MainContentMobile /> : <MainContentPC />}
             />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
+
+            <Route
+              path="/product/:id"
+              element={isMobile ? <ProductDetailMobile /> : <ProductDetail />}
+            />
           </Routes>
         </AppContainer>
         <Footer />

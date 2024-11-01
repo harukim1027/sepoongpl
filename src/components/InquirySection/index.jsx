@@ -9,16 +9,35 @@ const InquiryContainer = styled.div`
   border: 1px solid #ccc;
   text-align: center;
   background-color: #f9f9f9;
+
+  /* 모바일 스타일 */
+  @media (max-width: 768px) {
+    max-width: 320px;
+    margin: 20px auto;
+    padding: 15px;
+  }
 `
 
 const InquiryTitle = styled.h3`
   font-size: 24px;
   margin-bottom: 20px;
+
+  /* 모바일 스타일 */
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 `
 
 const InquiryDetail = styled.p`
   font-size: 16px;
   margin: 5px 0;
+
+  /* 모바일 스타일 */
+  @media (max-width: 768px) {
+    font-size: 14px;
+    margin: 3px 0;
+  }
 `
 
 const InquirySection = () => {

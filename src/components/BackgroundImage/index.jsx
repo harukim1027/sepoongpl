@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const ImageContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: auto;
 
   @media (max-width: 768px) {
@@ -17,7 +17,7 @@ const ImageContainer = styled.div`
 `
 
 const Img = styled.img`
-  width: 100vw;
+  width: 100%;
   height: auto;
   opacity: 0.5;
   transform: rotate(270deg);
