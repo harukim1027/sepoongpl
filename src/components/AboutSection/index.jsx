@@ -49,7 +49,7 @@ const AboutSection = () => {
         <div style={{ textAlign: 'center', alignItems: 'center' }}>
           <AnimatedText
             color="#ffffff"
-            fontSize="18px"
+            fontSize="14px"
             align="center"
             style={{ textAlign: 'center' }}
           >
