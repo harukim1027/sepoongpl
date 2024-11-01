@@ -5,11 +5,14 @@ const FooterContainer = styled.footer`
   padding: 40px 0;
   background-color: #3a4461; /* 배경색 설정 */
   color: #ffffff;
+  font-size: 14px;
+
   text-align: center;
 `
 
 const Info = styled.div`
   margin-bottom: 20px;
+  font-size: 14px;
 
   dl {
     margin-bottom: 10px;

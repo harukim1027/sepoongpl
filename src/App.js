@@ -308,13 +308,27 @@ const AppContainer = styled.div`
 const ScrollToTop = () => {
   const { pathname } = useLocation()
 
+  console.log(pathname, '음?')
   useEffect(() => {
-    window.scrollTo(0, 0) // 페이지가 이동할 때 스크롤을 맨 위로 이동
+    // 페이지 이동 또는 새로고침 시 스크롤을 맨 위로 이동
+    window.scrollTo(0, 0)
   }, [pathname])
 
   return null
 }
+
 const App = () => {
+  useEffect(() => {
+    // 새로고침 시 스크롤을 맨 위로 이동
+    const handleRefresh = () => window.scrollTo(0, 0)
+    window.addEventListener('beforeunload', handleRefresh)
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('beforeunload', handleRefresh)
+    }
+  }, [])
+
   const isMobile = useMediaQuery('(max-width: 768px)')
   // useEffect(() => {
   //   // 환경 변수에서 Kakao API 키를 가져오기

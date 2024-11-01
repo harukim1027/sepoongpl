@@ -93,7 +93,7 @@ const OrgChart = () => {
     <OrgChartContainer>
       <Node delay={0.2}>
         <CardContent>
-          <Typography variant="h6" component="div">
+          <Typography variant={isMobile ? 'h7' : 'h5'} component="div">
             대 표 이 사
           </Typography>
         </CardContent>
@@ -101,7 +101,7 @@ const OrgChart = () => {
       <Line />
       <Node delay={0.3}>
         <CardContent>
-          <Typography variant="h6" component="div">
+          <Typography variant={isMobile ? 'h7' : 'h5'} component="div">
             감 사
           </Typography>
         </CardContent>
@@ -110,21 +110,21 @@ const OrgChart = () => {
       <NodeGroup>
         <Node delay={0.4}>
           <CardContent>
-            <Typography variant="h6" component="div">
+            <Typography variant={isMobile ? 'h7' : 'h5'} component="div">
               관<br />리<br />팀
             </Typography>
           </CardContent>
         </Node>
         <Node delay={0.5}>
           <CardContent>
-            <Typography variant="h6" component="div">
+            <Typography variant={isMobile ? 'h7' : 'h5'} component="div">
               기<br />술<br />팀
             </Typography>
           </CardContent>
         </Node>
         <Node delay={0.6}>
           <CardContent>
-            <Typography variant="h6" component="div">
+            <Typography variant={isMobile ? 'h7' : 'h5'} component="div">
               생<br />산<br />팀
             </Typography>
           </CardContent>

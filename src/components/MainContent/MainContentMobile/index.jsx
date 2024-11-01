@@ -40,6 +40,7 @@ const MainTextContainer = styled.div`
   top: 100px; /* 위에 마진 30px */
   z-index: 2; /* 텍스트가 이미지 위에 오도록 설정 */
   animation: ${slideDown} 1s ease forwards; /* 애니메이션 적용 */
+  padding: 30px;
 `
 
 const StyledSpan = styled.span`
@@ -60,6 +61,7 @@ const MainSection = styled.section`
 const BackgroundContainer = styled.div`
   width: 100%;
   padding: 0;
+  justify-content: center;
 `
 
 const BackgroundContainerProducts = styled.div`
@@ -69,8 +71,7 @@ const BackgroundContainerProducts = styled.div`
 
 const SlideImageContainer = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 400px;
+  width: 90%;
   overflow: hidden;
 `
 
@@ -127,9 +128,11 @@ const MainContentMobile = () => {
             style={{
               fontFamily: "'Red Hat Display', sans-serif",
               fontWeight: 'bold',
-              fontSize: '40px',
+              fontSize: '35px',
               color: '#FFFEF8',
-              textAlign: 'center',
+              textAlign: 'left',
+
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             Building the Future
@@ -162,9 +165,24 @@ const MainContentMobile = () => {
               color: '#222',
               marginTop: '30px',
               marginBottom: '30px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             PRODUCTS
+          </h2>
+          <h2
+            style={{
+              textAlign: 'right',
+              fontSize: '10px',
+              color: '#222',
+              fontWeight: '400',
+
+              marginTop: '30px',
+              marginBottom: '10px',
+              marginRight: '10px',
+            }}
+          >
+            * 이미지를 클릭하면 상세 페이지로 이동합니다.
           </h2>
           <ProductImages />
         </BackgroundContainerProducts>
@@ -191,6 +209,7 @@ const MainContentMobile = () => {
               color: '#ffffff',
               marginTop: '30px',
               marginBottom: '30px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             ABOUT
@@ -210,6 +229,7 @@ const MainContentMobile = () => {
               color: '#222',
               marginTop: '30px',
               marginBottom: '30px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             HISTORY
@@ -231,6 +251,7 @@ const MainContentMobile = () => {
               color: '#222',
               marginTop: '30px',
               marginBottom: '30px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             ORGANIZATION
@@ -252,6 +273,7 @@ const MainContentMobile = () => {
               color: '#222',
               marginTop: '30px',
               marginBottom: '30px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
             LOCATION

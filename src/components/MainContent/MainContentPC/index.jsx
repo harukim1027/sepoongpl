@@ -121,8 +121,9 @@ const MainContentPC = () => {
             style={{
               fontFamily: "'Red Hat Display', sans-serif",
               fontWeight: 'bold',
-              fontSize: '70px',
+              fontSize: '60px',
               color: '#FFFEF8',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.4)`,
             }}
           >
             Building the Future
@@ -161,6 +162,7 @@ const MainContentPC = () => {
                   fontSize: '70px',
                   color: '#222',
                   textAlign: 'center',
+                  textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
                 }}
               >
                 PRODUCTS
@@ -169,7 +171,20 @@ const MainContentPC = () => {
           </h2>
           <br className="wixui-rich-text__text" />
           <br className="wixui-rich-text__text" />
+          <h2
+            style={{
+              textAlign: 'right',
+              fontSize: '16px',
+              color: '#222',
+              fontWeight: '400',
 
+              marginTop: '30px',
+              marginBottom: '10px',
+              marginRight: '10px',
+            }}
+          >
+            * 이미지를 클릭하면 상세 페이지로 이동합니다.
+          </h2>
           <ProductImages />
         </BackgroundContainerProducts>
       </GridSection>
@@ -190,7 +205,12 @@ const MainContentPC = () => {
           >
             <span
               className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%', textAlign: 'center' }}
+              style={{
+                fontSize: '68px',
+                width: '100%',
+                textAlign: 'center',
+                textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
+              }}
             >
               <span className="color_11 wixui-rich-text__text">ABOUT</span>
             </span>
@@ -267,7 +287,11 @@ const MainContentPC = () => {
           >
             <span
               className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%' }}
+              style={{
+                fontSize: '68px',
+                width: '100%',
+                textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
+              }}
             >
               <span
                 style={{
@@ -302,7 +326,11 @@ const MainContentPC = () => {
           >
             <span
               className="wixui-rich-text__text"
-              style={{ fontSize: '68px', width: '100%' }}
+              style={{
+                fontSize: '68px',
+                width: '100%',
+                textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
+              }}
             >
               <StyledSpan>ORGANIZATION</StyledSpan>
             </span>
@@ -359,6 +387,7 @@ const MainContentPC = () => {
                     fontSize: '70px',
                     color: '#222',
                     textAlign: 'center',
+                    textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
                   }}
                 >
                   LOCATION

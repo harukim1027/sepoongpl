@@ -30,8 +30,8 @@ const ImagesRow = styled.div`
 `
 
 const ImgContainer = styled.div`
-  width: ${(props) => (props.isMobile ? '100%' : 'clamp(200px, 25vw, 400px)')};
-  height: ${(props) => (props.isMobile ? 'auto' : 'clamp(150px, 20vw, 300px)')};
+  width: ${(props) => (props.isMobile ? '100%' : 'clamp(200px, 25vw, 600px)')};
+  height: ${(props) => (props.isMobile ? 'auto' : 'clamp(150px, 20vw, 500px)')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +70,9 @@ const TextContainer = styled.div`
   background: rgba(255, 255, 255, 0.7);
   padding: 5px 10px;
   pointer-events: none;
+  font-weight: 700;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
 
   @media (max-width: 400px) {
     font-size: 14px;

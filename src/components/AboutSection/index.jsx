@@ -49,14 +49,14 @@ const AboutSection = () => {
         <div style={{ textAlign: 'center', alignItems: 'center' }}>
           <AnimatedText
             color="#ffffff"
-            fontSize="20px"
+            fontSize="18px"
             align="center"
             style={{ textAlign: 'center' }}
           >
             <span
               className="wixui-rich-text__text"
               style={{
-                fontSize: '18px',
+                fontSize: '14px',
                 width: '100%',
                 textAlign: 'center',
                 lineHeight: '2',
