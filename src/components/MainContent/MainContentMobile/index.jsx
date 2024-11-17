@@ -12,14 +12,41 @@ import image1 from '../../../assets/images/3dImage1.png'
 import image2 from '../../../assets/images/3dImage2.png'
 import image3 from '../../../assets/images/3dImage3.png'
 import image4 from '../../../assets/images/3dImage4.png'
-import background from '../../../assets/images/background2.jpg'
+import background from '../../../assets/images/main_mobile.jpg'
+import building1 from '../../../assets/images/building1.jpeg'
+import image1_1 from '../../../assets/images/image1_1.jpeg'
+import image1_2 from '../../../assets/images/image1_2.jpeg'
+import image1_3 from '../../../assets/images/image1_3.jpeg'
+import image1_4 from '../../../assets/images/image1_4.jpeg'
+import image1_5 from '../../../assets/images/image1_5.jpeg'
+import image1_6 from '../../../assets/images/image1_6.jpeg'
+import image1_7 from '../../../assets/images/image1_7.jpeg'
+import image1_8 from '../../../assets/images/image1_8.jpeg'
 import AboutSection from '../../AboutSection'
+import Section from '../../Section'
+import ImageSliders from '../../ImageSliders'
 const MainContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fffef8;
   overflow: hidden; /* 스크롤바 숨김 */
 `
+const ResponsiveImage = styled.img`
+  width: 100%; /* 기본값: 모바일에서는 전체 너비 */
+  height: auto; /* 비율 유지 */
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 추가 */
+
+  @media (min-width: 768px) {
+    width: 70%; /* PC 화면에서는 너비를 70%로 */
+  }
+`
+const SlideImageContainers = styled.div`
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+`
+
 // 애니메이션 효과를 정의
 const slideDown = keyframes`
   0% {
@@ -41,14 +68,6 @@ const MainTextContainer = styled.div`
   z-index: 2; /* 텍스트가 이미지 위에 오도록 설정 */
   animation: ${slideDown} 1s ease forwards; /* 애니메이션 적용 */
   padding: 30px;
-`
-
-const StyledSpan = styled.span`
-  font-family: 'Red Hat Display', sans-serif;
-  font-weight: bold;
-  font-size: 40px;
-  color: #222;
-  text-align: center;
 `
 
 const MainSection = styled.section`
@@ -88,7 +107,18 @@ const SectionContainer = styled.div`
     opacity 0.5s ease-out,
     transform 0.5s ease-out;
 `
-
+const GridSection = styled(Section)`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 20px !important;
+  opacity: ${(props) => (props.inView ? 1 : 0)};
+  transform: ${(props) =>
+    props.inView ? 'translateY(0)' : 'translateY(50px)'};
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+`
 const RightAlignedText = styled.div`
   text-align: center;
   margin-top: 20px;
@@ -105,7 +135,16 @@ const StyledHR = styled.hr`
 
 const MainContentMobile = () => {
   const images = [image1, image2, image3, image4]
-
+  const images2 = [
+    image1_1,
+    image1_2,
+    image1_3,
+    image1_4,
+    image1_5,
+    image1_6,
+    image1_7,
+    image1_8,
+  ]
   const [ref1, inView1] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [ref2, inView2] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [ref3, inView3] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -126,33 +165,50 @@ const MainContentMobile = () => {
         <MainTextContainer>
           <span
             style={{
-              fontFamily: "'Red Hat Display', sans-serif",
               fontWeight: 'bold',
               fontSize: '35px',
               color: '#FFFEF8',
-              textAlign: 'left',
 
-              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.4)`,
             }}
           >
-            Building the Future
-            <br />
-            with Advanced Machinery and Steel
-            <br />
-            Fabrication
+            <span
+              style={{
+                fontWeight: 'bold',
+                fontSize: '40px',
+                color: '#FFCF89',
+
+                textShadow: `1px 1px 5px rgba(0, 0, 0, 0.4)`,
+              }}
+            >
+              '미래'
+            </span>
+            를 설계하다,
+          </span>
+          <span
+            style={{
+              fontWeight: 'bold',
+              fontSize: '35px',
+              color: '#FFFEF8',
+              marginTop: '10px',
+              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.4)`,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 'bold',
+                fontSize: '40px',
+                color: '#FFCF89',
+
+                textShadow: `1px 1px 5px rgba(0, 0, 0, 0.4)`,
+              }}
+            >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; '혁신'
+            </span>
+            을 만들다.
           </span>
         </MainTextContainer>
       </MainSection>
-
-      {/* 섹션 2 - 이미지 슬라이더 */}
-      <SectionContainer ref={ref2} inView={inView2}>
-        <BackgroundContainer>
-          <SlideImageContainer>
-            <ImageSlider images={images} interval={3000} />
-          </SlideImageContainer>
-        </BackgroundContainer>
-      </SectionContainer>
-      <StyledHR />
 
       {/* 섹션 3 - 제품 소개 */}
       <SectionContainer ref={ref3} inView={inView3}>
@@ -168,7 +224,7 @@ const MainContentMobile = () => {
               textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
-            PRODUCTS
+            제품 소개
           </h2>
           <h2
             style={{
@@ -187,79 +243,14 @@ const MainContentMobile = () => {
           <ProductImages />
         </BackgroundContainerProducts>
       </SectionContainer>
-
-      {/* 섹션 4 - CEO 인사말 */}
-      <SectionContainer
-        ref={ref4}
-        inView={inView4}
-        style={{
-          backgroundColor: '#3A4461',
-        }}
-      >
-        <BackgroundContainer
-          style={{
-            backgroundColor: '#3A4461',
-          }}
-        >
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: '40px',
-              fontWeight: 'bold',
-              color: '#ffffff',
-              marginTop: '30px',
-              marginBottom: '30px',
-              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
-            }}
-          >
-            ABOUT
-          </h2>
-          <AboutSection />
-        </BackgroundContainer>
-      </SectionContainer>
-
-      {/* 섹션 5 - 회사 역사 */}
-      <SectionContainer ref={ref5} inView={inView5}>
+      {/* 섹션 2 - 이미지 슬라이더 */}
+      <SectionContainer ref={ref2} inView={inView2}>
         <BackgroundContainer>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: '40px',
-              fontWeight: 'bold',
-              color: '#222',
-              marginTop: '30px',
-              marginBottom: '30px',
-              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
-            }}
-          >
-            HISTORY
-          </h2>
-          <History />
+          <SlideImageContainer>
+            <ImageSlider images={images} interval={3000} />
+          </SlideImageContainer>
         </BackgroundContainer>
       </SectionContainer>
-
-      <StyledHR />
-
-      {/* 섹션 6 - 조직도 */}
-      <SectionContainer ref={ref6} inView={inView6}>
-        <BackgroundContainer>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: '40px',
-              fontWeight: 'bold',
-              color: '#222',
-              marginTop: '30px',
-              marginBottom: '30px',
-              textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
-            }}
-          >
-            ORGANIZATION
-          </h2>
-          <OrgChart />
-        </BackgroundContainer>
-      </SectionContainer>
-
       <StyledHR />
 
       {/* 섹션 7 - 위치 */}
@@ -276,7 +267,7 @@ const MainContentMobile = () => {
               textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
-            LOCATION
+            찾아오는 길
           </h2>
           <h2
             style={{
@@ -291,6 +282,8 @@ const MainContentMobile = () => {
           >
             경기도 안산시 단원구 번영2로 안길41 (시화공단 4다 101-3)
           </h2>
+          <ResponsiveImage src={building1} />
+
           <KakaoMap />
         </BackgroundContainer>
       </SectionContainer>

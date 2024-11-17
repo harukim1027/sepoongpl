@@ -6,9 +6,7 @@ import {
   useLocation,
 } from 'react-router-dom'
 import Header from './components/Header/MainHeader'
-import Home from './pages/Home'
-import Projects from './pages/Project'
-import Contact from './pages/Contact'
+
 import styled, { createGlobalStyle } from 'styled-components'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import MainContentPC from './components/MainContent/MainContentPC'
@@ -16,6 +14,8 @@ import MainContentMobile from './components/MainContent/MainContentMobile'
 import Footer from './components/Footer'
 import ProductDetail from './pages/ProductDetail'
 import ProductDetailMobile from './pages/ProductDetailMobile'
+import Organization from './pages/Organization'
+import About from './pages/About'
 
 const GlobalStyle = createGlobalStyle`
   a,abbr,acronym,address,applet,b,big,blockquote,button,caption,center,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,font,footer,form,h1,h2,h3,h4,h5,h6,header,i,iframe,img,ins,kbd,label,legend,li,nav,object,ol,p,pre,q,s,samp,section,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,title,tr,tt,u,ul,var {
@@ -363,6 +363,11 @@ const App = () => {
               path="/product/:id"
               element={isMobile ? <ProductDetailMobile /> : <ProductDetail />}
             />
+            <Route
+              path="/organization"
+              element={<Organization isMobile={isMobile} />}
+            />
+            <Route path="/about" element={<About isMobile={isMobile} />} />
           </Routes>
         </AppContainer>
         <Footer />

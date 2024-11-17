@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { HiOutlineMenu } from 'react-icons/hi' // 메뉴 아이콘 사용
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -8,22 +9,22 @@ const HeaderContainer = styled.header`
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: ${({ bgColor }) => bgColor};
   background-size: cover;
   padding: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  background-color: ${({ bgColor }) => bgColor};
   transition:
     top 0.3s ease,
-    /* 헤더가 위아래로 이동할 때의 애니메이션 */ background-color 0.3s ease,
+    background-color 0.3s ease,
     box-shadow 0.3s ease;
   box-shadow: ${({ isDark }) =>
-    isDark ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none'}; /* 스크롤 시 그림자 */
+    isDark ? '0 4px 8px rgba(0, 0, 0, 0.1)' : 'none'};
 
   @media (max-width: 768px) {
-    padding: 10px;
+    padding: 10px 0;
   }
 `
 
@@ -33,20 +34,72 @@ const HeaderContent = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 0 30px;
-  margin-top: 10px;
 
   @media (max-width: 768px) {
-    justify-content: center; /* 모바일에서 로고를 가운데 정렬 */
-    padding: 0 15px; /* 좌우 패딩 조정 */
+    padding: 0 15px;
   }
 `
 
 const Logo = styled.img`
   cursor: pointer;
-  width: 200px; /* 기본 로고 크기 */
+  width: 180px;
+  margin-top: 5px;
 
   @media (max-width: 768px) {
-    width: 150px; /* 모바일에서 로고 크기를 줄임 */
+    width: 150px;
+  }
+`
+
+const MenuContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`
+
+const MenuItem = styled.div`
+  margin-left: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+`
+
+const MenuIcon = styled.div`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`
+
+const MobileMenu = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: ${({ bgColor }) => bgColor};
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  transition: all 0.3s ease;
+  z-index: 999;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`
+
+const MobileMenuItem = styled.div`
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 `
 
@@ -54,6 +107,7 @@ const Header = () => {
   const [isDark, setIsDark] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -61,17 +115,13 @@ const Header = () => {
       const currentScrollY = window.scrollY
 
       if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // 스크롤을 내릴 때, 헤더 숨김
         setIsVisible(false)
       } else {
-        // 스크롤을 위로 올릴 때, 헤더 표시
         setIsVisible(true)
       }
 
-      // 스크롤 위치 저장
       setLastScrollY(currentScrollY)
 
-      // 헤더 배경색 변경 (스크롤이 50px 이상이면)
       if (currentScrollY > 50) {
         setIsDark(true)
       } else {
@@ -79,17 +129,24 @@ const Header = () => {
       }
     }
 
-    // 스크롤 이벤트 추가
     window.addEventListener('scroll', handleScroll)
 
     return () => {
-      // 컴포넌트 언마운트 시 이벤트 제거
       window.removeEventListener('scroll', handleScroll)
     }
   }, [lastScrollY])
 
   const handleLogoClick = () => {
     navigate('/')
+  }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev)
+  }
+
+  const handleMenuItemClick = (path) => {
+    navigate(path)
+    setIsMobileMenuOpen(false) // 모바일 메뉴 닫기
   }
 
   return (
@@ -104,7 +161,29 @@ const Header = () => {
           alt="Logo"
           onClick={handleLogoClick}
         />
+        {/* PC 메뉴 */}
+        <MenuContainer>
+          <MenuItem onClick={() => handleMenuItemClick('/about')}>
+            회사 소개
+          </MenuItem>
+          <MenuItem onClick={() => handleMenuItemClick('/organization')}>
+            조직도
+          </MenuItem>
+        </MenuContainer>
+        {/* 모바일 메뉴 아이콘 */}
+        <MenuIcon onClick={toggleMobileMenu}>
+          <HiOutlineMenu size={30} />
+        </MenuIcon>
       </HeaderContent>
+      {/* 모바일 메뉴 */}
+      <MobileMenu isOpen={isMobileMenuOpen} bgColor="#fffef8">
+        <MobileMenuItem onClick={() => handleMenuItemClick('/about')}>
+          회사 소개
+        </MobileMenuItem>
+        <MobileMenuItem onClick={() => handleMenuItemClick('/organization')}>
+          조직도
+        </MobileMenuItem>
+      </MobileMenu>
     </HeaderContainer>
   )
 }
