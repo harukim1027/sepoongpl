@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Section from '../../components/Section'
 import styled from 'styled-components'
 
@@ -43,9 +43,12 @@ const Tab = styled.div`
   padding: 10px 20px;
 `
 
-const About = (isMobile) => {
+const About = (isMobile, click) => {
   const [activeTab, setActiveTab] = useState('about') // 초기 탭은 'about'
 
+  useEffect(() => {
+    setActiveTab('about')
+  }, [click])
   return (
     <div
       style={{

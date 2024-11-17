@@ -308,7 +308,6 @@ const AppContainer = styled.div`
 const ScrollToTop = () => {
   const { pathname } = useLocation()
 
-  console.log(pathname, '음?')
   useEffect(() => {
     // 페이지 이동 또는 새로고침 시 스크롤을 맨 위로 이동
     window.scrollTo(0, 0)

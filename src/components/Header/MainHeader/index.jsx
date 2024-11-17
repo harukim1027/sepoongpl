@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { HiOutlineMenu } from 'react-icons/hi' // 메뉴 아이콘 사용
 
 const HeaderContainer = styled.header`
@@ -137,7 +137,12 @@ const Header = () => {
   }, [lastScrollY])
 
   const handleLogoClick = () => {
+    const ScrollToTop = () => {
+      window.scrollTo(0, 0)
+      return null
+    }
     navigate('/')
+    ScrollToTop()
   }
 
   const toggleMobileMenu = () => {
@@ -145,6 +150,8 @@ const Header = () => {
   }
 
   const handleMenuItemClick = (path) => {
+    window.scrollTo(0, 0) // 메뉴 클릭 시 페이지 상단으로 이동
+
     navigate(path)
     setIsMobileMenuOpen(false) // 모바일 메뉴 닫기
   }
@@ -159,7 +166,7 @@ const Header = () => {
         <Logo
           src={require('../../../assets/images/mainLogo.png')}
           alt="Logo"
-          onClick={handleLogoClick}
+          onClick={(event) => handleLogoClick(event)}
         />
         {/* PC 메뉴 */}
         <MenuContainer>
