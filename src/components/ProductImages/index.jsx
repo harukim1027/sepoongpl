@@ -94,7 +94,10 @@ const ProductImages = () => {
     <Container>
       <ImagesRow>
         {images.map((image, index) => (
-          <Link to={`/product/${index + 1}`} key={index}>
+          <Link
+            to={index + 1 === 4 ? `/product/${5}` : `/product/${index + 1}`}
+            key={index + 1}
+          >
             <ImgContainer isMobile={isMobile}>
               <img src={image} alt={`Product image ${index + 1}`} />
               <TextContainer className="text-container">

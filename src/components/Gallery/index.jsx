@@ -48,8 +48,6 @@ const DetailText = styled.h1`
 `
 
 const Gallery = ({ isMobile }) => {
-  const [loading, setLoading] = useState(false)
-
   const images2 = [
     image1_1,
     image1_2,
@@ -61,34 +59,13 @@ const Gallery = ({ isMobile }) => {
     image1_8,
   ]
 
-  const loadImages = () => {
-    setLoading(true)
-
-    const imageLoaders = images2.map((image) => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        img.src = image
-        img.onload = resolve
-      })
-    })
-
-    Promise.all(imageLoaders).then(() => setLoading(false))
-  }
-
-  useEffect(() => {
-    loadImages()
-  }, [])
-
   return (
     <Container>
       <DetailText isMobile={isMobile.isMobile}>
         * 이미지를 클릭하면 전체 크기로 볼 수 있습니다.
       </DetailText>
-      {loading ? (
-        <Loader />
-      ) : (
-        <ImageSliders isMobile={isMobile} images={images2} interval={3000} />
-      )}
+
+      <ImageSliders isMobile={isMobile} images={images2} interval={3000} />
     </Container>
   )
 }

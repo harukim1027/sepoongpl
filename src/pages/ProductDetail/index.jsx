@@ -165,13 +165,15 @@ const ProductDetail = () => {
 
   const loadImages = () => {
     setLoading(true)
-    const imageLoaders = images[activeTab].map((image) => {
-      return new Promise((resolve) => {
-        const img = new Image()
-        img.src = image
-        img.onload = resolve
+    const imageLoaders =
+      images &&
+      images[activeTab].map((image) => {
+        return new Promise((resolve) => {
+          const img = new Image()
+          img.src = image
+          img.onload = resolve
+        })
       })
-    })
 
     Promise.all(imageLoaders).then(() => setLoading(false))
   }
@@ -219,7 +221,7 @@ const ProductDetail = () => {
             <Loader />
           ) : (
             <>
-              {images[activeTab].length > 0 && (
+              {images[activeTab]?.length > 0 && (
                 <>
                   <h2
                     style={{
