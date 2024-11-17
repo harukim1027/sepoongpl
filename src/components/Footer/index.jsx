@@ -38,7 +38,7 @@ const Footer = () => {
     <FooterContainer>
       <Info>
         <dl>
-          <dt>찾아오는길</dt>
+          <dt>찾아오는 길</dt>
           <dd>본사 및 공장</dd>
         </dl>
         <dl>

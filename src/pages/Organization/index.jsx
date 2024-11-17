@@ -51,7 +51,7 @@ const Organization = (isMobile) => {
               textShadow: `1px 1px 5px rgba(0, 0, 0, 0.2)`,
             }}
           >
-            ORGANIZATION
+            조직도{' '}
           </h2>
 
           <StyledHR />
