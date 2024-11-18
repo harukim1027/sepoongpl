@@ -93,8 +93,8 @@ const About = (isMobile, click) => {
           {activeTab === 'history' && <History isMobile={isMobile?.isMobile} />}
           {activeTab === 'gallery' && <Gallery isMobile={isMobile?.isMobile} />}
 
-          {activeTab === 'history' ||
-            (activeTab === 'gallery' && <InquirySection />)}
+          {(activeTab === 'history' ||
+            activeTab === 'gallery') && <InquirySection />}
         </BackgroundContainer>
       </GridSection>
     </div>
